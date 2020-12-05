@@ -689,6 +689,10 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="2DD1955C-E51F-46D0-BF57-00412D27112F" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="IMh-g9-QGu">
+                            <allowedToolbarItems/>
+                            <defaultToolbarItems/>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -704,7 +708,7 @@
         <!--Window Controller-->
         <scene sceneID="U55-k3-WLm">
             <objects>
-                <windowController storyboardIdentifier="ThemeSelectorWindow" id="6hl-5h-ZIB" customClass="TSWindowController" customModule="JBThemeSelector" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="themeSelectorWindow" id="6hl-5h-ZIB" customClass="TSWindowController" customModule="JBThemeSelector" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Select a Theme" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="JgM-g7-mM0">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="245" y="311" width="900" height="600"/>
@@ -730,6 +734,9 @@
                                                 <segment label="Liquid" width="60"/>
                                             </segments>
                                         </segmentedCell>
+                                        <connections>
+                                            <action selector="didSelectWallpaper:" target="6hl-5h-ZIB" id="0Vn-k8-ZQe"/>
+                                        </connections>
                                     </segmentedControl>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="uJg-h4-ikV"/>
@@ -744,6 +751,7 @@
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="wallpaperControl" destination="Hzv-3e-yfw" id="DsK-ke-uuH"/>
                         <segue destination="fWJ-P0-bZJ" kind="relationship" relationship="window.shadowedContentViewController" id="dvG-MJ-vdY"/>
                     </connections>
                 </windowController>
@@ -767,13 +775,13 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="BigSur" id="vQy-Ou-NpJ"/>
                             </imageView>
-                            <visualEffectView blendingMode="withinWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-we-NZI">
+                            <visualEffectView blendingMode="withinWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-we-NZI" userLabel="Top Bar Visual Effect View">
                                 <rect key="frame" x="0.0" y="546" width="900" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="67i-rN-EdN"/>
                                 </constraints>
                             </visualEffectView>
-                            <visualEffectView blendingMode="withinWindow" material="menu" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="lud-CY-3vm">
+                            <visualEffectView blendingMode="withinWindow" material="menu" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="lud-CY-3vm" userLabel="Bottom Bar Visual Effect View">
                                 <rect key="frame" x="0.0" y="0.0" width="900" height="54"/>
                                 <subviews>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bwv-CL-gvv">
@@ -783,9 +791,12 @@
                                             <segments>
                                                 <segment label="Solid" width="80"/>
                                                 <segment label="Misty" width="80" selected="YES" tag="1"/>
-                                                <segment label="Glass" width="80"/>
+                                                <segment label="Glass" width="80" tag="2"/>
                                             </segments>
                                         </segmentedCell>
+                                        <connections>
+                                            <action selector="didSelectTheme:" target="fWJ-P0-bZJ" id="4eP-pY-Q4Q"/>
+                                        </connections>
                                     </segmentedControl>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mJU-We-n3m">
                                         <rect key="frame" x="773" y="7" width="113" height="40"/>
@@ -793,6 +804,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="applySaveClose:" target="fWJ-P0-bZJ" id="vOn-dN-Z6X"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -804,20 +818,175 @@
                                     <constraint firstAttribute="height" constant="54" id="weq-Sz-Ggl"/>
                                 </constraints>
                             </visualEffectView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="LzN-8E-Jhn">
+                                <rect key="frame" x="560" y="504" width="320" height="34"/>
+                                <subviews>
+                                    <visualEffectView blendingMode="withinWindow" material="popover" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-qA-kaM">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AEV-DW-0Co">
+                                                <rect key="frame" x="22" y="9" width="276" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Select a wallpaper to preview with the theme" id="xH8-pe-rR6">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AEV-DW-0Co" firstAttribute="centerY" secondItem="Cv4-qA-kaM" secondAttribute="centerY" id="l61-HS-vR2"/>
+                                            <constraint firstItem="AEV-DW-0Co" firstAttribute="centerX" secondItem="Cv4-qA-kaM" secondAttribute="centerX" id="tap-wL-RcI"/>
+                                        </constraints>
+                                    </visualEffectView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="JGa-jl-D99"/>
+                                    <constraint firstAttribute="width" constant="320" id="Te8-uI-PXt"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cv4-qA-kaM" secondAttribute="trailing" id="XAz-cJ-Z9S"/>
+                                    <constraint firstItem="Cv4-qA-kaM" firstAttribute="top" secondItem="LzN-8E-Jhn" secondAttribute="top" id="XHO-33-wtt"/>
+                                    <constraint firstItem="Cv4-qA-kaM" firstAttribute="leading" secondItem="LzN-8E-Jhn" secondAttribute="leading" id="fgk-xr-dNx"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cv4-qA-kaM" secondAttribute="bottom" id="tej-UA-VTp"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="9eU-h8-tLO" userLabel="TSView HStack">
+                                <rect key="frame" x="50" y="150" width="800" height="300"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Si6-pA-fmA">
+                                        <rect key="frame" x="0.0" y="0.0" width="380" height="300"/>
+                                        <subviews>
+                                            <visualEffectView blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="S77-CB-7Zb">
+                                                <rect key="frame" x="0.0" y="0.0" width="380" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="5PQ-No-W5g"/>
+                                                    <constraint firstAttribute="width" constant="380" id="Tqe-48-wZV"/>
+                                                </constraints>
+                                            </visualEffectView>
+                                            <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p97-wr-ips">
+                                                <rect key="frame" x="0.0" y="0.0" width="380" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="380" id="O1Z-mF-zyO"/>
+                                                    <constraint firstAttribute="height" constant="300" id="sdb-US-L1J"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="LeftView" id="8UU-JL-i4g"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="S77-CB-7Zb" secondAttribute="bottom" id="65d-Fl-Omy"/>
+                                            <constraint firstAttribute="trailing" secondItem="p97-wr-ips" secondAttribute="trailing" id="KY6-V1-4x4"/>
+                                            <constraint firstItem="p97-wr-ips" firstAttribute="top" secondItem="Si6-pA-fmA" secondAttribute="top" id="M5s-Fg-my8"/>
+                                            <constraint firstAttribute="trailing" secondItem="S77-CB-7Zb" secondAttribute="trailing" id="dTd-l6-Mrc"/>
+                                            <constraint firstAttribute="bottom" secondItem="p97-wr-ips" secondAttribute="bottom" id="eF4-Tw-eHL"/>
+                                            <constraint firstItem="S77-CB-7Zb" firstAttribute="leading" secondItem="Si6-pA-fmA" secondAttribute="leading" id="fdl-Mb-ss8"/>
+                                            <constraint firstAttribute="width" constant="380" id="jMC-8h-VCe"/>
+                                            <constraint firstItem="S77-CB-7Zb" firstAttribute="top" secondItem="Si6-pA-fmA" secondAttribute="top" id="lFC-Xb-YoW"/>
+                                            <constraint firstAttribute="height" constant="300" id="qNG-F6-ziJ"/>
+                                            <constraint firstItem="p97-wr-ips" firstAttribute="leading" secondItem="Si6-pA-fmA" secondAttribute="leading" id="wRq-s8-fVS"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="H8y-aF-Z1Q">
+                                        <rect key="frame" x="420" y="0.0" width="380" height="300"/>
+                                        <subviews>
+                                            <visualEffectView blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="f1U-vO-USo">
+                                                <rect key="frame" x="0.0" y="0.0" width="380" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="vb4-x9-xJZ"/>
+                                                    <constraint firstAttribute="width" constant="380" id="xjH-fq-TdN"/>
+                                                </constraints>
+                                            </visualEffectView>
+                                            <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-pb-hQp">
+                                                <rect key="frame" x="0.0" y="0.0" width="380" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="380" id="1Q0-a8-czh"/>
+                                                    <constraint firstAttribute="height" constant="300" id="LhY-Z0-2tD"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightView" id="iep-xr-5ux"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="f1U-vO-USo" secondAttribute="trailing" id="3FY-qM-OnV"/>
+                                            <constraint firstAttribute="bottom" secondItem="f1U-vO-USo" secondAttribute="bottom" id="7rD-6W-Ze2"/>
+                                            <constraint firstAttribute="height" constant="300" id="Hp5-UR-4ix"/>
+                                            <constraint firstAttribute="bottom" secondItem="ahp-pb-hQp" secondAttribute="bottom" id="axo-Jr-W5Z"/>
+                                            <constraint firstItem="f1U-vO-USo" firstAttribute="top" secondItem="H8y-aF-Z1Q" secondAttribute="top" id="er0-Z2-M1z"/>
+                                            <constraint firstItem="ahp-pb-hQp" firstAttribute="top" secondItem="H8y-aF-Z1Q" secondAttribute="top" id="h9g-Hg-eWh"/>
+                                            <constraint firstItem="f1U-vO-USo" firstAttribute="leading" secondItem="H8y-aF-Z1Q" secondAttribute="leading" id="hWe-s9-nGQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="ahp-pb-hQp" secondAttribute="trailing" id="hdR-eO-LY5"/>
+                                            <constraint firstAttribute="width" constant="380" id="oAP-qn-3oV"/>
+                                            <constraint firstItem="ahp-pb-hQp" firstAttribute="leading" secondItem="H8y-aF-Z1Q" secondAttribute="leading" id="yZs-aP-2nq"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Si6-pA-fmA" firstAttribute="top" secondItem="9eU-h8-tLO" secondAttribute="top" id="Yh0-6Q-072"/>
+                                    <constraint firstItem="Si6-pA-fmA" firstAttribute="leading" secondItem="9eU-h8-tLO" secondAttribute="leading" id="Yrw-99-foG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Si6-pA-fmA" secondAttribute="bottom" id="ac2-4Q-RcD"/>
+                                    <constraint firstItem="H8y-aF-Z1Q" firstAttribute="leading" secondItem="Si6-pA-fmA" secondAttribute="trailing" constant="40" id="prJ-0P-LIc"/>
+                                    <constraint firstAttribute="trailing" secondItem="H8y-aF-Z1Q" secondAttribute="trailing" id="r3C-4e-ZeV"/>
+                                    <constraint firstAttribute="bottom" secondItem="H8y-aF-Z1Q" secondAttribute="bottom" id="rew-nE-bF7"/>
+                                    <constraint firstItem="H8y-aF-Z1Q" firstAttribute="top" secondItem="9eU-h8-tLO" secondAttribute="top" id="zg1-ed-sq3"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DGY-gu-5XJ">
+                                <rect key="frame" x="172" y="62" width="556" height="34"/>
+                                <subviews>
+                                    <visualEffectView blendingMode="withinWindow" material="popover" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="nxw-wq-E85">
+                                        <rect key="frame" x="0.0" y="0.0" width="556" height="34"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-9g-7mv">
+                                                <rect key="frame" x="18" y="9" width="520" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="This can be changed at any time by opening the Theme Selector in the Window menu" id="T2V-Pe-irY">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="tfc-9g-7mv" firstAttribute="centerY" secondItem="nxw-wq-E85" secondAttribute="centerY" id="Qjk-aa-bdf"/>
+                                            <constraint firstItem="tfc-9g-7mv" firstAttribute="centerX" secondItem="nxw-wq-E85" secondAttribute="centerX" id="x7a-Bl-u6A"/>
+                                        </constraints>
+                                    </visualEffectView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nxw-wq-E85" secondAttribute="trailing" id="4jG-DN-HMY"/>
+                                    <constraint firstAttribute="width" constant="556" id="9Df-QN-pUX"/>
+                                    <constraint firstAttribute="bottom" secondItem="nxw-wq-E85" secondAttribute="bottom" id="Gvi-XD-cLe"/>
+                                    <constraint firstAttribute="height" constant="34" id="VfV-Tp-bbh"/>
+                                    <constraint firstItem="nxw-wq-E85" firstAttribute="leading" secondItem="DGY-gu-5XJ" secondAttribute="leading" id="VvT-Yl-SyC"/>
+                                    <constraint firstItem="nxw-wq-E85" firstAttribute="top" secondItem="DGY-gu-5XJ" secondAttribute="top" id="zsC-GV-elb"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="lud-CY-3vm" firstAttribute="leading" secondItem="aug-Mo-ofE" secondAttribute="leading" id="3G7-aV-2eu"/>
                             <constraint firstAttribute="trailing" secondItem="lud-CY-3vm" secondAttribute="trailing" id="5p1-J7-3Kn"/>
+                            <constraint firstAttribute="trailing" secondItem="LzN-8E-Jhn" secondAttribute="trailing" constant="20" symbolic="YES" id="BQ3-Zm-gYw"/>
                             <constraint firstItem="82S-pX-UTu" firstAttribute="leading" secondItem="aug-Mo-ofE" secondAttribute="leading" id="CUn-Cg-8IO"/>
+                            <constraint firstItem="LzN-8E-Jhn" firstAttribute="top" secondItem="CAn-we-NZI" secondAttribute="bottom" constant="8" symbolic="YES" id="GI1-mE-FWG"/>
+                            <constraint firstItem="LzN-8E-Jhn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aug-Mo-ofE" secondAttribute="leading" priority="200" constant="100" id="JvD-n1-CHZ"/>
+                            <constraint firstItem="9eU-h8-tLO" firstAttribute="centerY" secondItem="aug-Mo-ofE" secondAttribute="centerY" id="NNY-6Y-Mni"/>
+                            <constraint firstItem="DGY-gu-5XJ" firstAttribute="centerX" secondItem="aug-Mo-ofE" secondAttribute="centerX" id="PaK-tl-elA"/>
                             <constraint firstItem="CAn-we-NZI" firstAttribute="top" secondItem="aug-Mo-ofE" secondAttribute="top" id="PmP-Bw-ioN"/>
                             <constraint firstAttribute="trailing" secondItem="CAn-we-NZI" secondAttribute="trailing" id="Y2x-HX-LMF"/>
                             <constraint firstItem="CAn-we-NZI" firstAttribute="leading" secondItem="aug-Mo-ofE" secondAttribute="leading" id="Zwb-IW-Vch"/>
+                            <constraint firstItem="9eU-h8-tLO" firstAttribute="centerX" secondItem="aug-Mo-ofE" secondAttribute="centerX" id="b3v-M8-UnD"/>
+                            <constraint firstItem="lud-CY-3vm" firstAttribute="top" secondItem="DGY-gu-5XJ" secondAttribute="bottom" constant="8" symbolic="YES" id="h4q-dy-61y"/>
                             <constraint firstAttribute="bottom" secondItem="lud-CY-3vm" secondAttribute="bottom" id="hPA-I0-a1x"/>
                             <constraint firstItem="82S-pX-UTu" firstAttribute="top" secondItem="aug-Mo-ofE" secondAttribute="top" id="lc6-bv-gXs"/>
                             <constraint firstAttribute="bottom" secondItem="82S-pX-UTu" secondAttribute="bottom" id="o6L-zl-P3M"/>
                             <constraint firstAttribute="trailing" secondItem="82S-pX-UTu" secondAttribute="trailing" id="qMb-eM-aut"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="leftBlurView" destination="S77-CB-7Zb" id="ie6-fy-eKd"/>
+                        <outlet property="leftView" destination="Si6-pA-fmA" id="nyg-yz-KAz"/>
+                        <outlet property="rightBlurView" destination="f1U-vO-USo" id="TQy-bt-gKZ"/>
+                        <outlet property="rightView" destination="H8y-aF-Z1Q" id="zPR-gf-7fq"/>
+                        <outlet property="themeControl" destination="bwv-CL-gvv" id="oAo-Qg-Bs2"/>
+                        <outlet property="themeHelperView" destination="DGY-gu-5XJ" id="h2q-Ns-Z9Z"/>
+                        <outlet property="wallpaperHelperView" destination="LzN-8E-Jhn" id="ts8-bQ-cks"/>
+                        <outlet property="wallpaperView" destination="82S-pX-UTu" id="Pqt-Pp-cNB"/>
+                    </connections>
                 </viewController>
                 <customObject id="jDO-AD-hge" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -835,8 +1004,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </visualEffectView>
                             <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sne-JL-Fa8">
-                                <rect key="frame" x="157" y="118" width="166" height="32"/>
-                                <buttonCell key="cell" type="push" title="Open Theme Selector" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uz7-0J-Mqq">
+                                <rect key="frame" x="158" y="115" width="164" height="40"/>
+                                <buttonCell key="cell" type="push" title="Open Theme Selector" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uz7-0J-Mqq">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -866,5 +1035,7 @@
     </scenes>
     <resources>
         <image name="BigSur" width="2133" height="1200"/>
+        <image name="LeftView" width="380" height="300"/>
+        <image name="RightView" width="380" height="300"/>
     </resources>
 </document>

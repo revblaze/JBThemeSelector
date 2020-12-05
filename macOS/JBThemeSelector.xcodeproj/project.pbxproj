@@ -14,6 +14,8 @@
 		C21349A9257BE8CD00D1ADB1 /* TSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349A8257BE8CD00D1ADB1 /* TSViewController.swift */; };
 		C21349AC257BEA2C00D1ADB1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349AB257BEA2C00D1ADB1 /* Theme.swift */; };
 		C21349B2257BEF8600D1ADB1 /* TSWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349B1257BEF8600D1ADB1 /* TSWindowController.swift */; };
+		C21349B7257C021300D1ADB1 /* HoverHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349B6257C021300D1ADB1 /* HoverHelpers.swift */; };
+		C21349BA257C084100D1ADB1 /* MiniViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349B9257C084100D1ADB1 /* MiniViewHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		C21349A8257BE8CD00D1ADB1 /* TSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSViewController.swift; sourceTree = "<group>"; };
 		C21349AB257BEA2C00D1ADB1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C21349B1257BEF8600D1ADB1 /* TSWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSWindowController.swift; sourceTree = "<group>"; };
+		C21349B6257C021300D1ADB1 /* HoverHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverHelpers.swift; sourceTree = "<group>"; };
+		C21349B9257C084100D1ADB1 /* MiniViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniViewHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 				C2134992257BE01500D1ADB1 /* ViewController.swift */,
 				C21349A8257BE8CD00D1ADB1 /* TSViewController.swift */,
 				C21349B1257BEF8600D1ADB1 /* TSWindowController.swift */,
+				C21349B5257C01F500D1ADB1 /* Helpers */,
 				C21349AB257BEA2C00D1ADB1 /* Theme.swift */,
 				C2134994257BE01600D1ADB1 /* Assets.xcassets */,
 				C2134996257BE01600D1ADB1 /* Main.storyboard */,
@@ -70,6 +75,15 @@
 				C213499A257BE01600D1ADB1 /* JBThemeSelector.entitlements */,
 			);
 			path = JBThemeSelector;
+			sourceTree = "<group>";
+		};
+		C21349B5257C01F500D1ADB1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C21349B6257C021300D1ADB1 /* HoverHelpers.swift */,
+				C21349B9257C084100D1ADB1 /* MiniViewHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +157,10 @@
 			files = (
 				C2134993257BE01500D1ADB1 /* ViewController.swift in Sources */,
 				C21349B2257BEF8600D1ADB1 /* TSWindowController.swift in Sources */,
+				C21349B7257C021300D1ADB1 /* HoverHelpers.swift in Sources */,
 				C21349AC257BEA2C00D1ADB1 /* Theme.swift in Sources */,
 				C21349A9257BE8CD00D1ADB1 /* TSViewController.swift in Sources */,
+				C21349BA257C084100D1ADB1 /* MiniViewHelpers.swift in Sources */,
 				C2134991257BE01500D1ADB1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,11 +7,14 @@
 
 import Cocoa
 
-class TSViewController: NSViewController {
+class TSViewController: NSViewController, NSToolbarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        
+        
     }
     
 }

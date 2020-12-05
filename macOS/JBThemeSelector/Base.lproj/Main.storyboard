@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="JBThemeSelector" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -683,9 +685,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="JBThemeSelector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
@@ -698,20 +699,172 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="-499" y="637"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="U55-k3-WLm">
+            <objects>
+                <windowController storyboardIdentifier="ThemeSelectorWindow" id="6hl-5h-ZIB" customClass="TSWindowController" customModule="JBThemeSelector" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Select a Theme" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="JgM-g7-mM0">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <rect key="contentRect" x="245" y="311" width="900" height="600"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+                        <value key="minSize" type="size" width="900" height="600"/>
+                        <value key="maxSize" type="size" width="900" height="600"/>
+                        <view key="contentView" id="cxE-U2-eOI">
+                            <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <toolbar key="toolbar" implicitIdentifier="69BAB24E-F3FE-4CE3-89DD-A1BF1A5035D3" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Rno-Ae-Bjq">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="9D9F538F-ADF8-443A-8199-337421E38A91" label="" paletteLabel="Select Wallpaper" sizingBehavior="auto" id="dby-LT-vpG">
+                                    <nil key="toolTip"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="Hzv-3e-yfw">
+                                        <rect key="frame" x="0.0" y="14" width="198" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="zRv-22-xcQ">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Wave" width="60"/>
+                                                <segment label="Big Sur" width="60" selected="YES" tag="1"/>
+                                                <segment label="Liquid" width="60"/>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="uJg-h4-ikV"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="uJg-h4-ikV"/>
+                                <toolbarItem reference="dby-LT-vpG"/>
+                            </defaultToolbarItems>
+                        </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="6hl-5h-ZIB" id="x45-M2-bNr"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="fWJ-P0-bZJ" kind="relationship" relationship="window.shadowedContentViewController" id="dvG-MJ-vdY"/>
+                    </connections>
+                </windowController>
+                <customObject id="OIV-67-q5O" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="289" y="1141"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RWx-1v-iFs">
+            <objects>
+                <viewController id="fWJ-P0-bZJ" customClass="TSViewController" customModule="JBThemeSelector" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="aug-Mo-ofE">
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="82S-pX-UTu">
+                                <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="1bo-Ta-8RP"/>
+                                    <constraint firstAttribute="width" constant="900" id="a0V-eB-W4y"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="BigSur" id="vQy-Ou-NpJ"/>
+                            </imageView>
+                            <visualEffectView blendingMode="withinWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-we-NZI">
+                                <rect key="frame" x="0.0" y="546" width="900" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="67i-rN-EdN"/>
+                                </constraints>
+                            </visualEffectView>
+                            <visualEffectView blendingMode="withinWindow" material="menu" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="lud-CY-3vm">
+                                <rect key="frame" x="0.0" y="0.0" width="900" height="54"/>
+                                <subviews>
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bwv-CL-gvv">
+                                        <rect key="frame" x="306" y="7" width="288" height="40"/>
+                                        <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="cOe-wM-Ec8">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Solid" width="80"/>
+                                                <segment label="Misty" width="80" selected="YES" tag="1"/>
+                                                <segment label="Glass" width="80"/>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mJU-We-n3m">
+                                        <rect key="frame" x="773" y="7" width="113" height="40"/>
+                                        <buttonCell key="cell" type="push" title="Apply &amp; Save" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JLC-FL-Zgb">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mJU-We-n3m" secondAttribute="trailing" constant="20" symbolic="YES" id="3UF-2V-z87"/>
+                                    <constraint firstItem="bwv-CL-gvv" firstAttribute="centerY" secondItem="lud-CY-3vm" secondAttribute="centerY" id="PUY-jU-hhc"/>
+                                    <constraint firstItem="bwv-CL-gvv" firstAttribute="centerX" secondItem="lud-CY-3vm" secondAttribute="centerX" id="RDZ-EQ-2QW"/>
+                                    <constraint firstItem="mJU-We-n3m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bwv-CL-gvv" secondAttribute="trailing" priority="200" constant="80" id="cku-4R-5Rn"/>
+                                    <constraint firstItem="mJU-We-n3m" firstAttribute="centerY" secondItem="lud-CY-3vm" secondAttribute="centerY" id="s7d-FD-715"/>
+                                    <constraint firstAttribute="height" constant="54" id="weq-Sz-Ggl"/>
+                                </constraints>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="lud-CY-3vm" firstAttribute="leading" secondItem="aug-Mo-ofE" secondAttribute="leading" id="3G7-aV-2eu"/>
+                            <constraint firstAttribute="trailing" secondItem="lud-CY-3vm" secondAttribute="trailing" id="5p1-J7-3Kn"/>
+                            <constraint firstItem="82S-pX-UTu" firstAttribute="leading" secondItem="aug-Mo-ofE" secondAttribute="leading" id="CUn-Cg-8IO"/>
+                            <constraint firstItem="CAn-we-NZI" firstAttribute="top" secondItem="aug-Mo-ofE" secondAttribute="top" id="PmP-Bw-ioN"/>
+                            <constraint firstAttribute="trailing" secondItem="CAn-we-NZI" secondAttribute="trailing" id="Y2x-HX-LMF"/>
+                            <constraint firstItem="CAn-we-NZI" firstAttribute="leading" secondItem="aug-Mo-ofE" secondAttribute="leading" id="Zwb-IW-Vch"/>
+                            <constraint firstAttribute="bottom" secondItem="lud-CY-3vm" secondAttribute="bottom" id="hPA-I0-a1x"/>
+                            <constraint firstItem="82S-pX-UTu" firstAttribute="top" secondItem="aug-Mo-ofE" secondAttribute="top" id="lc6-bv-gXs"/>
+                            <constraint firstAttribute="bottom" secondItem="82S-pX-UTu" secondAttribute="bottom" id="o6L-zl-P3M"/>
+                            <constraint firstAttribute="trailing" secondItem="82S-pX-UTu" secondAttribute="trailing" id="qMb-eM-aut"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="jDO-AD-hge" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="289" y="398"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="JBThemeSelector" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="2dB-aA-7CG">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            </visualEffectView>
+                            <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sne-JL-Fa8">
+                                <rect key="frame" x="157" y="118" width="166" height="32"/>
+                                <buttonCell key="cell" type="push" title="Open Theme Selector" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uz7-0J-Mqq">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openThemeSelector:" target="XfG-lQ-9wD" id="7Cu-z5-f1T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2dB-aA-7CG" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="8FK-vi-hez"/>
+                            <constraint firstAttribute="bottom" secondItem="2dB-aA-7CG" secondAttribute="bottom" id="EwZ-8A-v1C"/>
+                            <constraint firstAttribute="trailing" secondItem="2dB-aA-7CG" secondAttribute="trailing" id="g6p-FX-6lw"/>
+                            <constraint firstItem="sne-JL-Fa8" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="lAn-jc-PDg"/>
+                            <constraint firstItem="sne-JL-Fa8" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="nPU-dn-rS6"/>
+                            <constraint firstItem="2dB-aA-7CG" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="zjj-XG-RZ8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="blurView" destination="2dB-aA-7CG" id="yl6-fF-62f"/>
+                        <outlet property="themeSelectorButton" destination="sne-JL-Fa8" id="8if-um-BPY"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="-499" y="233"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BigSur" width="2133" height="1200"/>
+    </resources>
 </document>

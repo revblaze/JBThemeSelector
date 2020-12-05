@@ -31,4 +31,11 @@ enum Theme {
         }
     }
     
+    var rawInt: Int {
+        switch self {
+        case .solid: return 0
+        case .misty: return 1
+        case .glass: return 2
+        }
+    }
 }

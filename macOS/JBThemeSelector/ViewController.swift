@@ -7,7 +7,7 @@
 
 import Cocoa
 
-var appTheme = Theme.solid
+var appTheme = Theme.misty
 
 class ViewController: NSViewController, NSWindowDelegate {
 
@@ -19,9 +19,9 @@ class ViewController: NSViewController, NSWindowDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setTheme(.solid)
+        setTheme(.misty)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(NSWindowDelegate.windowDidBecomeKey(_:)), name: NSWindow.didBecomeKeyNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setNewTheme), name: .willApplyNewTheme, object: nil)
     }
     
     
@@ -30,11 +30,8 @@ class ViewController: NSViewController, NSWindowDelegate {
         blurView.material = theme.material          // Set Theme Material
     }
     
-    func windowDidBecomeKey(_ notification: Notification) {
-        //if newThemeWasApplied {
-            //setTheme(appTheme)
-            //newThemeWasApplied = false
-        //}
+    @objc func setNewTheme() {
+        setTheme(appTheme)
     }
     
     @IBAction func openThemeSelector(_ sender: Any) {
@@ -58,6 +55,8 @@ class ViewController: NSViewController, NSWindowDelegate {
 
 // MARK: Segue ID Extension
 extension NSStoryboardSegue.Identifier {
-    static let themeSelectorWindow = NSStoryboardSegue.Identifier("ThemeSelectorWindow")
+    static let themeSelectorWindow = NSStoryboardSegue.Identifier("themeSelectorWindow")
 }
-
+extension Notification.Name {
+    static let willApplyNewTheme = Notification.Name("willApplyNewTheme")
+}

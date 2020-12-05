@@ -2,6 +2,8 @@
 
 <b>JBThemeSelector</b> is a beautiful, dynamic Theme Selector for iOS and macOS.
 
+<img src="Media/Themes.gif" width="860" />
+
 ## Known Errors
 None as of yet.
 

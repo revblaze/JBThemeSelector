@@ -16,6 +16,7 @@
 		C21349B2257BEF8600D1ADB1 /* TSWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349B1257BEF8600D1ADB1 /* TSWindowController.swift */; };
 		C21349B7257C021300D1ADB1 /* HoverHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349B6257C021300D1ADB1 /* HoverHelpers.swift */; };
 		C21349BA257C084100D1ADB1 /* MiniViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21349B9257C084100D1ADB1 /* MiniViewHelpers.swift */; };
+		C25A67DD257FEA9900D98658 /* DarkModeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A67DC257FEA9900D98658 /* DarkModeHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		C21349B1257BEF8600D1ADB1 /* TSWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSWindowController.swift; sourceTree = "<group>"; };
 		C21349B6257C021300D1ADB1 /* HoverHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverHelpers.swift; sourceTree = "<group>"; };
 		C21349B9257C084100D1ADB1 /* MiniViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniViewHelpers.swift; sourceTree = "<group>"; };
+		C25A67DC257FEA9900D98658 /* DarkModeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				C21349B6257C021300D1ADB1 /* HoverHelpers.swift */,
 				C21349B9257C084100D1ADB1 /* MiniViewHelpers.swift */,
+				C25A67DC257FEA9900D98658 /* DarkModeHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				C21349AC257BEA2C00D1ADB1 /* Theme.swift in Sources */,
 				C21349A9257BE8CD00D1ADB1 /* TSViewController.swift in Sources */,
 				C21349BA257C084100D1ADB1 /* MiniViewHelpers.swift in Sources */,
+				C25A67DD257FEA9900D98658 /* DarkModeHelper.swift in Sources */,
 				C2134991257BE01500D1ADB1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

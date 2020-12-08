@@ -725,7 +725,7 @@
                                     <nil key="toolTip"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="Hzv-3e-yfw">
                                         <rect key="frame" x="0.0" y="14" width="198" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="zRv-22-xcQ">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -775,13 +775,13 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="BigSur" id="vQy-Ou-NpJ"/>
                             </imageView>
-                            <visualEffectView blendingMode="withinWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-we-NZI" userLabel="Top Bar Visual Effect View">
+                            <visualEffectView blendingMode="withinWindow" material="titlebar" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-we-NZI" userLabel="Top Bar Visual Effect View">
                                 <rect key="frame" x="0.0" y="546" width="900" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="67i-rN-EdN"/>
                                 </constraints>
                             </visualEffectView>
-                            <visualEffectView blendingMode="withinWindow" material="menu" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="lud-CY-3vm" userLabel="Bottom Bar Visual Effect View">
+                            <visualEffectView blendingMode="withinWindow" material="menu" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="lud-CY-3vm" userLabel="Bottom Bar Visual Effect View">
                                 <rect key="frame" x="0.0" y="0.0" width="900" height="54"/>
                                 <subviews>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bwv-CL-gvv">
@@ -808,12 +808,30 @@
                                             <action selector="applySaveClose:" target="fWJ-P0-bZJ" id="vOn-dN-Z6X"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XCy-95-3pA">
+                                        <rect key="frame" x="19" y="-3" width="113" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="ait-1g-d7R"/>
+                                            <constraint firstAttribute="width" constant="110" id="akV-gP-fEE"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="check" title=" Dark Mode" bezelStyle="regularSquare" imagePosition="left" controlSize="large" state="on" inset="2" id="Cbc-Gm-aPZ">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="darkModeToggleWasClicked:" target="fWJ-P0-bZJ" id="Evd-lI-f46"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mJU-We-n3m" secondAttribute="trailing" constant="20" symbolic="YES" id="3UF-2V-z87"/>
+                                    <constraint firstItem="XCy-95-3pA" firstAttribute="top" secondItem="lud-CY-3vm" secondAttribute="top" id="5au-3A-I4X"/>
+                                    <constraint firstAttribute="bottom" secondItem="XCy-95-3pA" secondAttribute="bottom" id="OJp-PM-jMe"/>
                                     <constraint firstItem="bwv-CL-gvv" firstAttribute="centerY" secondItem="lud-CY-3vm" secondAttribute="centerY" id="PUY-jU-hhc"/>
                                     <constraint firstItem="bwv-CL-gvv" firstAttribute="centerX" secondItem="lud-CY-3vm" secondAttribute="centerX" id="RDZ-EQ-2QW"/>
+                                    <constraint firstItem="XCy-95-3pA" firstAttribute="leading" secondItem="lud-CY-3vm" secondAttribute="leading" constant="22" id="WeN-FY-at8"/>
                                     <constraint firstItem="mJU-We-n3m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bwv-CL-gvv" secondAttribute="trailing" priority="200" constant="80" id="cku-4R-5Rn"/>
+                                    <constraint firstItem="XCy-95-3pA" firstAttribute="centerY" secondItem="lud-CY-3vm" secondAttribute="centerY" id="lk0-iQ-AW2"/>
                                     <constraint firstItem="mJU-We-n3m" firstAttribute="centerY" secondItem="lud-CY-3vm" secondAttribute="centerY" id="s7d-FD-715"/>
                                     <constraint firstAttribute="height" constant="54" id="weq-Sz-Ggl"/>
                                 </constraints>
@@ -821,7 +839,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="LzN-8E-Jhn">
                                 <rect key="frame" x="560" y="504" width="320" height="34"/>
                                 <subviews>
-                                    <visualEffectView blendingMode="withinWindow" material="popover" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-qA-kaM">
+                                    <visualEffectView blendingMode="withinWindow" material="popover" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-qA-kaM">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AEV-DW-0Co">
@@ -978,6 +996,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="darkModeCheckbox" destination="XCy-95-3pA" id="PCS-Gb-wKW"/>
                         <outlet property="leftBlurView" destination="S77-CB-7Zb" id="ie6-fy-eKd"/>
                         <outlet property="leftView" destination="Si6-pA-fmA" id="nyg-yz-KAz"/>
                         <outlet property="rightBlurView" destination="f1U-vO-USo" id="TQy-bt-gKZ"/>

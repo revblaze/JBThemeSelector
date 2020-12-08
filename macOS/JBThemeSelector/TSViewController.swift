@@ -23,28 +23,36 @@ class TSViewController: NSViewController, NSToolbarDelegate {
     @IBOutlet var rightView: NSView!                    // Right Mini View
     @IBOutlet var rightBlurView: NSVisualEffectView!    // Right Background Blur
     
+    // UI Elements
     @IBOutlet var themeControl: NSSegmentedControl!
     
-    // Hover Helpers
-    @IBOutlet weak var themeHelperView: NSView!
-    @IBOutlet weak var wallpaperHelperView: NSView!
+    // Dark Mode Helpers
+    let darkModeHelperView = NSImageView()
+    @IBOutlet var darkModeCheckbox: NSButton!           // Checkbox: Dark Mode
     
+    // Hover Helpers
+    @IBOutlet weak var themeHelperView: NSView!         // Theme Mini Helper View
+    @IBOutlet weak var wallpaperHelperView: NSView!     // Wallpaper Mini Helper View
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initMiniViews()
-        initThemeHelper()
-        initWallpaperHelper()
-        initTrackingArea()
+        initMiniViews()             // Initialize Mini Views
+        initThemeHelper()           // Initialize Theme Helper Text
+        initWallpaperHelper()       // Initialize Wallpaper Helper
+        initDarkModeHelper()        // Initialize Dark Mode Helper
+        initTrackingArea()          // Initialize Tracking Area
         
-        setTheme(appTheme)
-        themeControl.selectSegment(withTag: appTheme.rawInt)
+        // Initialize System Appearance Observer
+        initSystemAppearanceObserver()
+        
+        setTheme(appTheme)                                      // Set Mini Theme
+        themeControl.selectSegment(withTag: appTheme.rawInt)    // Set `appTheme` as currentTheme
         
         // TSWindowController Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeWallpaper(_:)), name: .didChangeWallpaper, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeHoverState(_:)), name: .didChangeHoverState, object: nil)
-        
     }
     
     
@@ -123,6 +131,9 @@ class TSViewController: NSViewController, NSToolbarDelegate {
         let themeUserInfo = ["segmentName": "themeControl"]
         let themeSegmentArea = NSTrackingArea.init(rect: themeControl.bounds, options: [NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeAlways], owner: self, userInfo: themeUserInfo)
         themeControl.addTrackingArea(themeSegmentArea)
+        let darkModeUserInfo = ["checkboxName": "darkModeCheckbox"]         // Tracker ID: Dark Mode Checkbox
+        let darkModeCheckboxArea = NSTrackingArea.init(rect: darkModeCheckbox.bounds, options: [NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeAlways], owner: self, userInfo: darkModeUserInfo)
+                darkModeCheckbox.addTrackingArea(darkModeCheckboxArea)
     }
     
     
@@ -133,6 +144,8 @@ class TSViewController: NSViewController, NSToolbarDelegate {
         if let segmentName = event.trackingArea?.userInfo?.values.first as? String {
             if segmentName == "themeControl" {
                 themeHelperView.animator().alphaValue = 1
+            } else if segmentName == "darkModeCheckbox" {
+                darkModeHelperView.animator().alphaValue = 1
             }
         }
     }
@@ -141,6 +154,8 @@ class TSViewController: NSViewController, NSToolbarDelegate {
         if let segmentName = event.trackingArea?.userInfo?.values.first as? String {
             if segmentName == "themeControl" {
                 themeHelperView.animator().alphaValue = 0
+            } else if segmentName == "darkModeCheckbox" {
+                darkModeHelperView.animator().alphaValue = 0
             }
         }
     }
@@ -154,7 +169,7 @@ extension Notification.Name {
     static let didChangeWallpaper = Notification.Name("didChangeWallpaper")
     static let didChangeHoverState = Notification.Name("didChangeHoverState")
 }
-// Wallpaper
+// Wallpaper Assets
 extension NSImage.Name {
     static let wave = NSImage.Name("Wave")
     static let bigSur = NSImage.Name("BigSur")

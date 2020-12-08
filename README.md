@@ -88,12 +88,15 @@ visualEffectView.isHidden = !theme.isTransparent
 #### Full Example Usage
 **macOS:** Setting the View and VisualEffectView properties.
 ```
-func setTheme(_ theme: Theme) {
+func set(_ theme: Theme) {
   view.backgroundColor = theme.backgroundColor
   visualEffectView.isHidden = !theme.isTransparent
   visualEffectView.material = theme.material
 }
 ```
+
+`set(.glass)`
+
 Note: If you need a more in-depth way of handling the macOS system appearance, checkout NSView's [hasDarkAppearance extension](https://gist.github.com/revblaze/bfe9969093fe60b181e14995b4eadfbc). You can use it to specify certain properties depending on if macOS is in default (light) or dark mode.
 
 

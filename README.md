@@ -1,8 +1,8 @@
 <img src="Media/Cover.jpg" width="860" />
 
-<b>JBThemeSelector</b> is a beautiful, dynamic Theme Selector for iOS and macOS.
+<b>JBThemeSelector</b> is a beautiful, dynamic theme selector for iOS and macOS.
 
-Give your users a feel of the themes that are available to them, before they're even applied!
+Give your users a feel of the themes that are available to them – before they're even applied.
 
 # Table of Contents
 1. **[Implementation](#implementation)**
@@ -16,19 +16,26 @@ Give your users a feel of the themes that are available to them, before they're 
     3. [Second Priority](#second-priority)
     4. [Packages](#packages)
 
+3. **Additional Information**
+    1. [Known Errors](#known-errors)
+    2. [References](#references)
+    3. [Requirements](#requirements)
+    4. [Licensing](#mit-license)
+
+
+As of right now, this project is more of a POC. I do plan on implementing a simplified integration process, as well as creating [packages](#packages) for a quick and easy setup process.
+
 -----
 
 <img src="Media/Themes.gif" width="860" />
 
 # Implementation
-As of right now, this project is more of a proof-of-concept. I do plan on implementing a simplified integration process, as well as creating [packages](#packages) for a quick and easy setup process.
-
 I am currently in the middle of exam season with a few more assignments due until I can officially call it a semester. Furthermore, I have a number of projects in the works that are close to production (one of which is where I got the inspiration to create this standalone project). However, the lovely people of Reddit requested that I release the base code as soon as possible, regardless of the code's current state.
 
 If anyone would like to help out, I would be more than happy to accept pull requests!
 
 ## Overview
-Initially, I was planning on adding a full-on theme library – including UI elements, colors, the works. However, once Big Sur was released, I knew that Apple's UI standards were heading in a different direction. A number of applications (Music, Safari, Outlook,  etc.) have opted for the [VisualEffectView](https://developer.apple.com/documentation/appkit/nsvisualeffectview) theming scheme. Thus, I decided to go the same route and allow the user's system to decide.
+Initially, I was planning on adding a full-on theme library – including UI elements, colors, the works. However, once Big Sur was released, I knew that Apple's UI standards were heading in a different direction. A number of applications (Music, Safari, Outlook,  etc.) have opted for the [VisualEffectView](https://developer.apple.com/documentation/appkit/nsvisualeffectview) theming scheme. Thus, I decided to go the same route and allow Big Sur to decide.
 
 ### Theme
 Theme implementation for AppKit's [NSVisualEffectView](https://developer.apple.com/documentation/appkit/nsvisualeffectview) with [Material](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material):
@@ -55,7 +62,6 @@ Setting VisualEffectView's `material` property:
 `visualEffectView.material = theme.material`
 
 #### Additional Theme Properties
-Determining if a view should have a clear or opaque background:
 ```
 var isTransparent: Bool {
   switch self {
@@ -94,9 +100,9 @@ func set(_ theme: Theme) {
 }
 ```
 
-Set new theme with: `set(.glass)`
+Set new theme with: `set(.theme)`
 
-Note: If you need a more in-depth way of handling the macOS system appearance, checkout NSView's [hasDarkAppearance extension](https://gist.github.com/revblaze/bfe9969093fe60b181e14995b4eadfbc). You can use it to specify certain properties depending on if macOS is in default (light) or dark mode.
+Note: If you need a more technical method of handling the macOS system appearance change, checkout NSView's [hasDarkAppearance extension](https://gist.github.com/revblaze/bfe9969093fe60b181e14995b4eadfbc). You can use it to specify certain properties, depending on if macOS is in default (light) or dark mode.
 
 
 ### Theme Selector

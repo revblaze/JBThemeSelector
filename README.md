@@ -46,12 +46,11 @@ enum Theme {
     case .glass: return .fullScreenUI
     }
   }
-  
 }
 ```
 ##### <ins>Use Cases</ins>
 
-Setting VisualEffectView's Material property:
+Setting VisualEffectView's `material` property:
 
 `visualEffectView.material = theme.material`
 
@@ -95,7 +94,7 @@ func set(_ theme: Theme) {
 }
 ```
 
-`set(.glass)`
+Set new theme with: `set(.glass)`
 
 Note: If you need a more in-depth way of handling the macOS system appearance, checkout NSView's [hasDarkAppearance extension](https://gist.github.com/revblaze/bfe9969093fe60b181e14995b4eadfbc). You can use it to specify certain properties depending on if macOS is in default (light) or dark mode.
 

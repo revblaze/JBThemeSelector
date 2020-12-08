@@ -16,6 +16,8 @@ Give your users a feel of the themes that are available to them, before they're 
     3. [Second Priority](#second-priority)
     4. [Packages](#packages)
 
+-----
+
 <img src="Media/Themes.gif" width="860" />
 
 # Implementation

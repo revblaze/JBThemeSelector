@@ -11,6 +11,8 @@ extension TSViewController {
     
     /// Initializes dark mode helper with fill image view
     func initDarkModeHelper() {
+        initDarkModeToggle()
+        
         darkModeHelperView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         darkModeHelperView.image = NSImage(named: .darkModeHint)
         
@@ -20,7 +22,6 @@ extension TSViewController {
         darkModeHelperView.alphaValue = 0
     }
 
-    
     /// Handles the Dark Mode checkbox and sets the state based on the system appearance.
     func initDarkModeToggle() {
         if view.hasDarkAppearance {
@@ -29,6 +30,16 @@ extension TSViewController {
             darkModeCheckbox.state = .off
         }
     }
+    
+    /// Called when the system appearance toggles between default (light) and dark mode.
+    func systemAppearanceDidChange() {
+        if view.hasDarkAppearance {
+            darkModeCheckbox.state = .off
+        } else {
+            darkModeCheckbox.state = .on
+        }
+    }
+    
     /// Allows the Dark Mode checkbox to remain enabled while disabling it's manual state change.
     @IBAction func darkModeToggleWasClicked(_ sender: NSButton) {
         if view.hasDarkAppearance {
@@ -43,7 +54,7 @@ extension TSViewController {
         DistributedNotificationCenter.default.addObserver(forName: .systemAppearanceDidChange,
                                                           object: nil, queue: OperationQueue.main) {
             [weak weakSelf = self] (notification) in
-            weakSelf?.initDarkModeToggle()
+            weakSelf?.systemAppearanceDidChange()
         }
     }
     

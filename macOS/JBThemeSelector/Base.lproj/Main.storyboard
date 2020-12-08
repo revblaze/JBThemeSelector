@@ -812,7 +812,7 @@
                                         <rect key="frame" x="19" y="-3" width="113" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="ait-1g-d7R"/>
-                                            <constraint firstAttribute="width" constant="110" id="akV-gP-fEE"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="akV-gP-fEE"/>
                                         </constraints>
                                         <buttonCell key="cell" type="check" title=" Dark Mode" bezelStyle="regularSquare" imagePosition="left" controlSize="large" state="on" inset="2" id="Cbc-Gm-aPZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -826,6 +826,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mJU-We-n3m" secondAttribute="trailing" constant="20" symbolic="YES" id="3UF-2V-z87"/>
                                     <constraint firstItem="XCy-95-3pA" firstAttribute="top" secondItem="lud-CY-3vm" secondAttribute="top" id="5au-3A-I4X"/>
+                                    <constraint firstItem="bwv-CL-gvv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XCy-95-3pA" secondAttribute="trailing" priority="200" constant="80" id="7PU-IA-zl6"/>
                                     <constraint firstAttribute="bottom" secondItem="XCy-95-3pA" secondAttribute="bottom" id="OJp-PM-jMe"/>
                                     <constraint firstItem="bwv-CL-gvv" firstAttribute="centerY" secondItem="lud-CY-3vm" secondAttribute="centerY" id="PUY-jU-hhc"/>
                                     <constraint firstItem="bwv-CL-gvv" firstAttribute="centerX" secondItem="lud-CY-3vm" secondAttribute="centerX" id="RDZ-EQ-2QW"/>

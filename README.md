@@ -30,7 +30,7 @@ As of right now, this project is more of a POC. I do plan on implementing a simp
 <img src="Media/Themes.gif" width="860" />
 
 # Implementation
-I am currently in the middle of exam season with a few more assignments due until I can officially call it a semester. Furthermore, I have a number of projects in the works that are close to production (one of which is where I got the inspiration to create this standalone project). However, the lovely people of Reddit requested that I release the base code as soon as possible, regardless of the code's current state.
+I am currently in the middle of exam season, with a few more assignments to hand-in before I can officially call it a semester. Furthermore, I have a number of projects in the works that are close to production (one of which is where I got the inspiration to create this standalone project). However, the lovely people of Reddit requested that I release the base code as soon as possible, regardless of the code's current state.
 
 If anyone would like to help out, I would be more than happy to accept pull requests!
 
